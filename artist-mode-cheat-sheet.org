@@ -9,7 +9,8 @@
 #+latex_header: \usepackage{array,multicol,lscape}
 #+latex_header: \pagestyle{empty}
 
-#+latex: {\large\bfseries\sffamily Picture-mode / Artist-mode cheat sheet}\\[.4cm]
+#+latex: {\large\bfseries\sffamily Picture-mode + Artist-mode (combo) cheat sheet}\\[.2cm]
+#+latex: {\scriptsize\itshape Major mode: picture-mode. Minor mode: artist-mode, toggled on top of it. While artist-mode is on, its bindings win for the keys below; everything else still runs picture-mode's overwrite/grid editing underneath --- including plain character typing.}\\[.3cm]
 
 #+BEGIN_CENTER
 
@@ -17,77 +18,77 @@
 #+latex: \begin{multicols}{2}
 #+attr_latex: :align >{\ttfamily}l l l
 
-| feature                | action / command       | description                        |
-|-------------------------+-------------------------+-------------------------------------|
-| enter/exit              | ~M-x picture-mode~      | enter picture-mode                 |
-|                         | ~C-c C-c~               | exit (trims trailing spaces)       |
-|-------------------------+-------------------------+-------------------------------------|
-| movement                | ~C-f~ / ~C-b~           | move right / left (overwrite)      |
-|                         | ~C-n~ / ~C-p~           | move down / up                     |
-|                         | ~C-a~ / ~C-e~           | beginning / end of line            |
-|                         | ~RET~                   | newline                            |
-|-------------------------+-------------------------+-------------------------------------|
-| editing                 | ~DEL~                   | clear char left (replace w/ space) |
-|                         | ~C-d~                   | clear char right (replace w/ space)|
-|                         | ~C-c C-d~               | delete char (shifts text)          |
-|                         | ~C-k~                   | clear line                         |
-|                         | ~C-o~                   | open line                          |
-|                         | ~C-j~                   | duplicate line                     |
-|-------------------------+-------------------------+-------------------------------------|
-| direction after insert  | ~C-c >~ / ~C-c <~       | set direction right / left         |
-|                         | ~C-c ^~ / ~C-c .~       | set direction up / down            |
-|                         | ~C-c '~ / ~C-c `~       | set direction NE / NW              |
-|                         | ~C-c /~ / ~C-c \\~      | set direction SW / SE              |
-|                         | ~C-c C-f~ / ~C-c C-b~   | repeat / reverse direction         |
-|-------------------------+-------------------------+-------------------------------------|
-| tabs                    | ~TAB~                   | tab-stop based tab                 |
-|                         | ~M-TAB~                 | context-based tab                  |
-|                         | ~C-c TAB~               | set tab stops                      |
-|-------------------------+-------------------------+-------------------------------------|
-| rectangles              | ~C-c C-k~               | clear rectangle                    |
-|                         | ~C-c C-w~               | clear rectangle \rightarrow register |
-|                         | ~C-c C-y~               | yank rectangle                     |
-|                         | ~C-c C-x~               | yank rectangle from register       |
-|                         | ~C-c C-r~               | draw rectangle                     |
+| feature    | action / command | description                       |
+|-------------+-------------------+------------------------------------|
+| setup      | ~M-x picture-mode~ | enter picture-mode (major mode)   |
+|            | ~M-x artist-mode~  | toggle artist-mode on (minor mode)|
+|-------------+-------------------+------------------------------------|
+| exit       | ~C-c C-c~ (1st)    | turn artist-mode off               |
+|            | ~C-c C-c~ (2nd)    | exit picture-mode                  |
 
-#+latex: \vspace*{0.5cm}
+#+latex: \vspace*{0.4cm}
 
 #+attr_latex: :align >{\ttfamily}l l l
 
-| feature       | action / command        | description                           |
-|----------------+--------------------------+----------------------------------------|
-| enter/exit     | ~M-x artist-mode~        | enter artist-mode                     |
-|                | ~C-c C-c~                | exit artist-mode                      |
-|----------------+--------------------------+----------------------------------------|
-| movement       | ~C-f~ / ~C-b~            | forward / backward char               |
-|                | ~C-n~ / ~C-p~            | next / previous line                  |
-|                | ~RET~                    | set point (start / end / vertex)      |
-|                | ~C-u RET~                | finalize poly-line                    |
-|----------------+--------------------------+----------------------------------------|
-| drawing op     | ~C-c C-a l~ / ~L~        | line / straight line                  |
-|                | ~C-c C-a r~ / ~s~        | rectangle / square                    |
-|                | ~C-c C-a p~ / ~P~        | poly-line / straight poly-line        |
-|                | ~C-c C-a e~ / ~c~        | ellipse / circle                      |
-|                | ~C-c C-a t~ / ~T~        | text see-thru / overwrite             |
-|                | ~C-c C-a S~ / ~z~        | spray-can / spray-can size            |
-|                | ~C-c C-a C-d~ / ~E~      | erase char / erase rectangle          |
-|                | ~C-c C-a v~ / ~V~        | vaporize line / connected lines       |
-|                | ~C-c C-a C-k~ / ~M-w~    | cut / copy rectangle                  |
-|                | ~C-c C-a C-y~            | paste rectangle                       |
-|                | ~C-c C-a f~              | flood-fill                            |
-|----------------+--------------------------+----------------------------------------|
-| settings       | ~C-c C-a C-l~            | set line character                    |
-|                | ~C-c C-a C-f~            | set fill character                    |
-|                | ~C-c C-a C-e~            | set erase character                   |
-|                | ~C-c C-a C-o~            | choose operation (menu)               |
-|                | ~C-c C-a C-r~            | toggle rubber-banding                 |
-|                | ~C-c C-a C-t~            | toggle trim line-endings              |
-|                | ~C-c C-a C-s~            | toggle borderless shapes              |
-|----------------+--------------------------+----------------------------------------|
-| mouse          | ~<~ / ~>~                | toggle arrow at line start / end      |
-|                | mouse-1 drag             | draw with current operation           |
-|                | mouse-2                  | choose operation (popup menu)         |
-|                | shift-mouse-1            | op variant (e.g. straight / square)   |
+| feature            | action / command      | description                        |
+|---------------------+------------------------+-------------------------------------|
+| move / point        | ~C-f~ / ~C-b~          | forward / backward char            |
+|                     | ~C-n~ / ~C-p~          | next / previous line               |
+|                     | ~RET~                  | set point (start/end/vertex)       |
+|                     | ~C-u RET~              | finalize poly-line                 |
+|---------------------+------------------------+-------------------------------------|
+| draw (mouse)        | mouse-1 drag           | draw with current operation        |
+|                     | mouse-2                | choose operation (popup menu)      |
+|                     | shift-mouse-1          | op variant (straight / square)     |
+|                     | ~<~ / ~>~              | toggle arrow at line start / end   |
+|---------------------+------------------------+-------------------------------------|
+| pick drawing op     | ~C-c C-a l~ / ~L~      | line / straight line               |
+|                     | ~C-c C-a r~ / ~s~      | rectangle / square                 |
+|                     | ~C-c C-a p~ / ~P~      | poly-line / straight poly-line     |
+|                     | ~C-c C-a e~ / ~c~      | ellipse / circle                   |
+|                     | ~C-c C-a t~ / ~T~      | text see-thru / overwrite          |
+|                     | ~C-c C-a S~ / ~z~      | spray-can / spray-can size         |
+|                     | ~C-c C-a C-d~ / ~E~    | erase char / erase rectangle       |
+|                     | ~C-c C-a v~ / ~V~      | vaporize line / connected lines    |
+|                     | ~C-c C-a C-k~ / ~M-w~  | cut / copy rectangle               |
+|                     | ~C-c C-a C-y~          | paste rectangle                    |
+|                     | ~C-c C-a f~            | flood-fill                         |
+|---------------------+------------------------+-------------------------------------|
+| artist settings     | ~C-c C-a C-l~          | set line character                 |
+|                     | ~C-c C-a C-f~          | set fill character                 |
+|                     | ~C-c C-a C-e~          | set erase character                |
+|                     | ~C-c C-a C-o~          | choose operation (menu)            |
+|                     | ~C-c C-a C-r~          | toggle rubber-banding              |
+|                     | ~C-c C-a C-t~          | toggle trim line-endings           |
+|                     | ~C-c C-a C-s~          | toggle borderless shapes           |
+
+#+latex: \vspace*{0.4cm}
+
+#+attr_latex: :align >{\ttfamily}l l l
+
+| feature                 | action / command       | description                        |
+|--------------------------+-------------------------+-------------------------------------|
+| type text (still picture)| any char                | overwrite + move per set direction |
+|                          | ~C-a~ / ~C-e~           | beginning / end of line            |
+|--------------------------+-------------------------+-------------------------------------|
+| set typing direction     | ~C-c >~ / ~C-c <~       | right / left                       |
+|                          | ~C-c ^~ / ~C-c .~       | up / down                          |
+|                          | ~C-c '~ / ~C-c `~       | NE / NW                            |
+|                          | ~C-c /~ / ~C-c \\~      | SW / SE                            |
+|                          | ~C-c C-f~ / ~C-c C-b~   | repeat / reverse direction         |
+|--------------------------+-------------------------+-------------------------------------|
+| line / char editing      | ~DEL~ / ~C-d~           | clear char left / right (space)    |
+|                          | ~C-c C-d~               | delete char (shifts text)          |
+|                          | ~C-k~                   | clear line                         |
+|                          | ~C-o~                   | open line                          |
+|                          | ~C-j~                   | duplicate line                     |
+|--------------------------+-------------------------+-------------------------------------|
+| tabs                     | ~TAB~ / ~M-TAB~         | tab-stop / context-based tab       |
+|                          | ~C-c TAB~               | set tab stops                      |
+|--------------------------+-------------------------+-------------------------------------|
+| rectangles               | ~C-c C-k~ / ~C-c C-r~   | clear / draw rectangle             |
+|                          | ~C-c C-y~ / ~C-c C-w~   | yank rectangle / to register       |
+|                          | ~C-c C-x~               | yank rectangle from register       |
 
 #+latex: \end{multicols}
 #+END_CENTER
