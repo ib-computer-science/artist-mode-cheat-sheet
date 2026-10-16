@@ -88,7 +88,10 @@
 |                          | ~C-j~                   | duplicate line                     |
 |--------------------------+-------------------------+-------------------------------------|
 | tabs                     | ~TAB~ / ~M-TAB~         | tab-stop / context-based tab       |
-|                          | ~C-c TAB~               | set tab stops                      |
+|                          | ~C-c TAB~               | set stops from line context        |
+|                          | ~C-u C-c TAB~           | reset tab stops to default         |
+|                          | ~M-x edit-tab-stops~    | edit stops visually (ruler buffer) |
+|                          | ~C-c C-c~ (in that buf) | install edited tab stops           |
 |--------------------------+-------------------------+-------------------------------------|
 | rectangles               | ~C-c C-k~ / ~C-c C-r~   | clear / draw rectangle             |
 |                          | ~C-c C-y~ / ~C-c C-w~   | yank rectangle / to register       |
