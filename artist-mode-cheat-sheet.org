@@ -9,8 +9,7 @@
 #+latex_header: \usepackage{array,multicol,lscape}
 #+latex_header: \pagestyle{empty}
 
-#+latex: {\large\bfseries\sffamily Picture-mode + Artist-mode (combo) cheat sheet}\\[.2cm]
-#+latex: {\scriptsize\itshape Major mode: picture-mode. Minor mode: artist-mode, toggled on top of it. While artist-mode is on, its bindings win for the keys below; everything else still runs picture-mode's overwrite/grid editing underneath --- including plain character typing.}\\[.3cm]
+#+latex: {\large\bfseries\sffamily Picture-mode (major) + Artist-mode (minor) cheat sheet}\\[.4cm]
 
 #+BEGIN_CENTER
 
