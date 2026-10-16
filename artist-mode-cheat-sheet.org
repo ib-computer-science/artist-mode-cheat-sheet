@@ -1,125 +1,93 @@
-#+TITLE: Picture-mode vs Artist-mode Cheat Sheet
-#+AUTHOR:
-#+OPTIONS: toc:nil num:nil
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+OPTIONS: author:nil broken-links:nil c:nil creator:nil
+#+OPTIONS: d:(not "LOGBOOK") date:nil e:t email:nil f:t inline:t num:t
+#+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+OPTIONS: timestamp:t title:nil toc:nil todo:t |:t
+#+LANGUAGE: en
 
-* Conceptual difference
-  - *picture-mode*: a /major mode/ — precise, keyboard-driven, grid-based character editing (overwrite semantics, exact column/row control)
-  - *artist-mode*: a /minor mode/ — mouse-driven shape drawing (lines, rectangles, ellipses, poly-lines) with some keyboard equivalents
-  - They solve different problems: picture-mode for hand-placing/moving characters precisely, artist-mode for drawing shapes fast
+#+latex_header: \usepackage[a4paper,margin=1cm,landscape]{geometry}
+#+latex_header: \usepackage{array,multicol,lscape}
+#+latex_header: \pagestyle{empty}
 
-* Entering / Exiting
-  | Action | picture-mode                                         | artist-mode                 |
-  |--------+-------------------------------------------------------+-------------------------------|
-  | Enter  | ~M-x picture-mode~                                    | ~M-x artist-mode~            |
-  | Exit   | ~C-c C-c~ (picture-mode-exit, trims trailing spaces)  | ~C-c C-c~ (artist-mode-off)  |
+#+latex: {\large\bfseries\sffamily Picture-mode / Artist-mode cheat sheet}\\[.4cm]
 
-* Picture-mode
+#+BEGIN_CENTER
 
-** Basic movement & editing (all overwrite, not insert)
-   | Key     | Command                                                       |
-   |---------+----------------------------------------------------------------|
-   | C-f     | picture-forward-column                                        |
-   | C-b     | picture-backward-column                                       |
-   | C-n     | picture-move-down                                             |
-   | C-p     | picture-move-up                                               |
-   | C-a     | picture-beginning-of-line                                     |
-   | C-e     | picture-end-of-line                                           |
-   | RET     | picture-newline                                               |
-   | DEL     | picture-backward-clear-column (replace prev char with space) |
-   | C-d     | picture-clear-column (replace next char with space)          |
-   | C-c C-d | picture-delete-char (real delete, shifts text)                |
-   | C-k     | picture-clear-line                                            |
-   | C-o     | picture-open-line                                             |
-   | C-j     | picture-duplicate-line                                        |
+#+latex: \scriptsize
+#+latex: \begin{multicols}{2}
+#+attr_latex: :align >{\ttfamily}l l l
 
-** Direction after self-insert (sets which way the cursor moves as you type)
-   | Key     | Command                | Direction     |
-   |---------+-------------------------+----------------|
-   | C-c >   | picture-movement-right  | \rightarrow   |
-   | C-c <   | picture-movement-left   | \leftarrow    |
-   | C-c ^   | picture-movement-up     | \uparrow      |
-   | C-c .   | picture-movement-down   | \downarrow    |
-   | C-c '   | picture-movement-ne     | \nearrow      |
-   | C-c `   | picture-movement-nw     | \nwarrow      |
-   | C-c /   | picture-movement-sw     | \swarrow      |
-   | C-c \\  | picture-movement-se     | \searrow      |
-   | C-c C-f | picture-motion          | repeat current direction          |
-   | C-c C-b | picture-motion-reverse  | reverse of current direction       |
+| feature                | action / command       | description                        |
+|-------------------------+-------------------------+-------------------------------------|
+| enter/exit              | ~M-x picture-mode~      | enter picture-mode                 |
+|                         | ~C-c C-c~               | exit (trims trailing spaces)       |
+|-------------------------+-------------------------+-------------------------------------|
+| movement                | ~C-f~ / ~C-b~           | move right / left (overwrite)      |
+|                         | ~C-n~ / ~C-p~           | move down / up                     |
+|                         | ~C-a~ / ~C-e~           | beginning / end of line            |
+|                         | ~RET~                   | newline                            |
+|-------------------------+-------------------------+-------------------------------------|
+| editing                 | ~DEL~                   | clear char left (replace w/ space) |
+|                         | ~C-d~                   | clear char right (replace w/ space)|
+|                         | ~C-c C-d~               | delete char (shifts text)          |
+|                         | ~C-k~                   | clear line                         |
+|                         | ~C-o~                   | open line                          |
+|                         | ~C-j~                   | duplicate line                     |
+|-------------------------+-------------------------+-------------------------------------|
+| direction after insert  | ~C-c >~ / ~C-c <~       | set direction right / left         |
+|                         | ~C-c ^~ / ~C-c .~       | set direction up / down            |
+|                         | ~C-c '~ / ~C-c `~       | set direction NE / NW              |
+|                         | ~C-c /~ / ~C-c \\~      | set direction SW / SE              |
+|                         | ~C-c C-f~ / ~C-c C-b~   | repeat / reverse direction         |
+|-------------------------+-------------------------+-------------------------------------|
+| tabs                    | ~TAB~                   | tab-stop based tab                 |
+|                         | ~M-TAB~                 | context-based tab                  |
+|                         | ~C-c TAB~               | set tab stops                      |
+|-------------------------+-------------------------+-------------------------------------|
+| rectangles              | ~C-c C-k~               | clear rectangle                    |
+|                         | ~C-c C-w~               | clear rectangle \rightarrow register |
+|                         | ~C-c C-y~               | yank rectangle                     |
+|                         | ~C-c C-x~               | yank rectangle from register       |
+|                         | ~C-c C-r~               | draw rectangle                     |
 
-   Tip: arrow keys also work as direction setters: ~C-c <home>/<prior>/<end>/<next>~ = NW/NE/SW/SE.
+#+latex: \vspace*{0.5cm}
 
-** Tabs
-   | Key     | Command              |
-   |---------+-----------------------|
-   | TAB     | picture-tab           |
-   | M-TAB   | picture-tab-search    |
-   | C-c TAB | picture-set-tab-stops |
+#+attr_latex: :align >{\ttfamily}l l l
 
-** Rectangles
-   | Key     | Command                             |
-   |---------+---------------------------------------|
-   | C-c C-k | picture-clear-rectangle              |
-   | C-c C-w | picture-clear-rectangle-to-register  |
-   | C-c C-y | picture-yank-rectangle               |
-   | C-c C-x | picture-yank-rectangle-from-register |
-   | C-c C-r | picture-draw-rectangle (draws a box!) |
+| feature       | action / command        | description                           |
+|----------------+--------------------------+----------------------------------------|
+| enter/exit     | ~M-x artist-mode~        | enter artist-mode                     |
+|                | ~C-c C-c~                | exit artist-mode                      |
+|----------------+--------------------------+----------------------------------------|
+| movement       | ~C-f~ / ~C-b~            | forward / backward char               |
+|                | ~C-n~ / ~C-p~            | next / previous line                  |
+|                | ~RET~                    | set point (start / end / vertex)      |
+|                | ~C-u RET~                | finalize poly-line                    |
+|----------------+--------------------------+----------------------------------------|
+| drawing op     | ~C-c C-a l~ / ~L~        | line / straight line                  |
+|                | ~C-c C-a r~ / ~s~        | rectangle / square                    |
+|                | ~C-c C-a p~ / ~P~        | poly-line / straight poly-line        |
+|                | ~C-c C-a e~ / ~c~        | ellipse / circle                      |
+|                | ~C-c C-a t~ / ~T~        | text see-thru / overwrite             |
+|                | ~C-c C-a S~ / ~z~        | spray-can / spray-can size            |
+|                | ~C-c C-a C-d~ / ~E~      | erase char / erase rectangle          |
+|                | ~C-c C-a v~ / ~V~        | vaporize line / connected lines       |
+|                | ~C-c C-a C-k~ / ~M-w~    | cut / copy rectangle                  |
+|                | ~C-c C-a C-y~            | paste rectangle                       |
+|                | ~C-c C-a f~              | flood-fill                            |
+|----------------+--------------------------+----------------------------------------|
+| settings       | ~C-c C-a C-l~            | set line character                    |
+|                | ~C-c C-a C-f~            | set fill character                    |
+|                | ~C-c C-a C-e~            | set erase character                   |
+|                | ~C-c C-a C-o~            | choose operation (menu)               |
+|                | ~C-c C-a C-r~            | toggle rubber-banding                 |
+|                | ~C-c C-a C-t~            | toggle trim line-endings              |
+|                | ~C-c C-a C-s~            | toggle borderless shapes              |
+|----------------+--------------------------+----------------------------------------|
+| mouse          | ~<~ / ~>~                | toggle arrow at line start / end      |
+|                | mouse-1 drag             | draw with current operation           |
+|                | mouse-2                  | choose operation (popup menu)         |
+|                | shift-mouse-1            | op variant (e.g. straight / square)   |
 
-* Artist-mode
-
-** Cursor movement
-   | Key                   | Command               |
-   |------------------------+------------------------|
-   | C-f / \rightarrow     | artist-forward-char    |
-   | C-b / \leftarrow      | artist-backward-char   |
-   | C-n / \downarrow      | artist-next-line       |
-   | C-p / \uparrow        | artist-previous-line   |
-   | RET     | artist-key-set-point (set start/end/vertex) |
-   | C-u RET | finalize a poly-line   |
-
-** Choosing what to draw (C-c C-a prefix)
-   | Key          | Shape                      |
-   |--------------+------------------------------|
-   | C-c C-a l    | line (any angle)            |
-   | C-c C-a L    | straight (horiz/vert) line  |
-   | C-c C-a r    | rectangle                   |
-   | C-c C-a s    | square                      |
-   | C-c C-a p    | poly-line                   |
-   | C-c C-a P    | straight poly-line          |
-   | C-c C-a e    | ellipse                     |
-   | C-c C-a c    | circle                       |
-   | C-c C-a t    | text (see-through)          |
-   | C-c C-a T    | text (overwrite)            |
-   | C-c C-a S    | spray-can                   |
-   | C-c C-a z    | set spray-can size          |
-   | C-c C-a C-d  | erase char                   |
-   | C-c C-a E    | erase rectangle              |
-   | C-c C-a v    | vaporize line                |
-   | C-c C-a V    | vaporize connected lines     |
-   | C-c C-a C-k  | cut rectangle                |
-   | C-c C-a M-w  | copy rectangle               |
-   | C-c C-a C-y  | paste                         |
-   | C-c C-a f    | flood-fill                   |
-
-** Toggles & settings
-   | Key         | Effect                        |
-   |-------------+---------------------------------|
-   | <           | toggle arrow at line start      |
-   | >           | toggle arrow at line end        |
-   | C-c C-a C-r | toggle rubber-banding            |
-   | C-c C-a C-t | toggle trim line-endings         |
-   | C-c C-a C-s | toggle borderless shapes         |
-   | C-c C-a C-l | set line character               |
-   | C-c C-a C-f | set fill character               |
-   | C-c C-a C-e | set erase character              |
-   | C-c C-a C-o | pick operation from a menu        |
-
-** Mouse (primary way to draw)
-   - mouse-1 drag: draw with current operation (line/rect/etc.)
-   - mouse-2: choose operation from popup menu
-   - Shift + mouse-1: variant of current op (e.g., straight line instead of free line, square instead of rectangle)
-
-* Combining them — practical notes
-  - *Don't enable both at once*: artist-mode's keymap (a minor-mode map) overrides picture-mode's major-mode bindings for shared keys like ~C-n~, ~C-p~, ~C-f~, ~C-b~, and ~C-c C-c~ — you'd lose picture-mode's grid-overwrite movement
-  - *Typical real workflow*: use artist-mode (mouse) to rough in boxes/lines fast, then switch to picture-mode to nudge individual characters, align text inside boxes, and clean up corners precisely
-  - picture-mode is better for: text alignment, exact character placement, non-destructive overwrite edits
-  - artist-mode is better for: quickly sketching shapes, rectangles, and connecting lines with the mouse
+#+latex: \end{multicols}
+#+END_CENTER
