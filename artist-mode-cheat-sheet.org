@@ -77,7 +77,9 @@
 |                          | ~C-c ^~ / ~C-c .~       | up / down                          |
 |                          | ~C-c '~ / ~C-c `~       | NE / NW                            |
 |                          | ~C-c /~ / ~C-c \\~      | SW / SE                            |
+|                          | ~C-u~ before a diagonal | that diagonal uses 2-col horiz step|
 |                          | ~C-c C-f~ / ~C-c C-b~   | repeat / reverse direction         |
+|                          | ~C-u~ N ~C-c C-f~       | repeat N times (rect edges)        |
 |--------------------------+-------------------------+-------------------------------------|
 | line / char editing      | ~DEL~ / ~C-d~           | clear char left / right (space)    |
 |                          | ~C-c C-d~               | delete char (shifts text)          |
@@ -91,6 +93,7 @@
 | rectangles               | ~C-c C-k~ / ~C-c C-r~   | clear / draw rectangle             |
 |                          | ~C-c C-y~ / ~C-c C-w~   | yank rectangle / to register       |
 |                          | ~C-c C-x~               | yank rectangle from register       |
+|                          | ~C-u~ before yank       | insert (shift text) vs. overwrite  |
 
 #+latex: \end{multicols}
 #+END_CENTER
