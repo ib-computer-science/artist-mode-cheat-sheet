@@ -31,8 +31,10 @@
 
 | feature            | action / command      | description                        |
 |---------------------+------------------------+-------------------------------------|
-| move / point        | ~C-f~ / ~C-b~          | forward / backward char            |
-|                     | ~C-n~ / ~C-p~          | next / previous line               |
+| move / point        | ~C-f~ / ~<right>~      | forward char                       |
+|                     | ~C-b~ / ~<left>~       | backward char                      |
+|                     | ~C-n~ / ~<down>~       | next line                          |
+|                     | ~C-p~ / ~<up>~         | previous line                      |
 |                     | ~RET~                  | set point (start/end/vertex)       |
 |                     | ~C-u RET~              | finalize poly-line                 |
 |---------------------+------------------------+-------------------------------------|
@@ -71,7 +73,8 @@
 | feature                 | action / command       | description                        |
 |--------------------------+-------------------------+-------------------------------------|
 | type text (still picture)| any char                | overwrite + move per set direction |
-|                          | ~C-a~ / ~C-e~           | beginning / end of line            |
+|                          | ~C-a~ / ~<home>~        | beginning of line                  |
+|                          | ~C-e~ / ~<end>~         | end of line                        |
 |--------------------------+-------------------------+-------------------------------------|
 | set typing direction     | ~C-c >~ / ~C-c <~       | right / left                       |
 |                          | ~C-c ^~ / ~C-c .~       | up / down                          |
