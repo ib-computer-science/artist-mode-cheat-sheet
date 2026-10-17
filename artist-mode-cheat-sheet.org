@@ -25,6 +25,7 @@
 |                     | ~C-p~ / ~<up>~         | previous line                      |
 |                     | ~RET~                  | set point (start/end/vertex)       |
 |                     | ~C-u RET~              | finalize poly-line                 |
+|                     | ~<~ / ~>~              | toggle start/end arrow, right after shape is done |
 |---------------------+------------------------+-------------------------------------|
 | draw (mouse)        | mouse-1 drag           | draw with current operation        |
 |                     | shift-mouse-1          | op variant (straight / square)     |
@@ -32,7 +33,6 @@
 |                     | mouse-3 drag           | erase char                         |
 |                     | shift-mouse-3          | erase rectangle                    |
 |                     | C-mouse-4 / C-mouse-5  | cycle to prev / next operation     |
-|                     | ~<~ / ~>~              | toggle arrow at line start / end   |
 |---------------------+------------------------+-------------------------------------|
 | pick drawing op     | ~C-c C-a l~ / ~L~      | line / straight line               |
 |                     | ~C-c C-a r~ / ~s~      | rectangle / square                 |
