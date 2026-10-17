@@ -17,18 +17,6 @@
 #+latex: \begin{multicols}{2}
 #+attr_latex: :align >{\ttfamily}l l l
 
-| feature    | action / command | description                       |
-|-------------+-------------------+------------------------------------|
-| setup      | ~M-x picture-mode~ | enter picture-mode (major mode)   |
-|            | ~M-x artist-mode~  | toggle artist-mode on (minor mode)|
-|-------------+-------------------+------------------------------------|
-| exit       | ~C-c C-c~ (1st)    | turn artist-mode off               |
-|            | ~C-c C-c~ (2nd)    | exit picture-mode                  |
-
-#+latex: \vspace*{0.4cm}
-
-#+attr_latex: :align >{\ttfamily}l l l
-
 | feature            | action / command      | description                        |
 |---------------------+------------------------+-------------------------------------|
 | move / point        | ~C-f~ / ~<right>~      | forward char                       |
