@@ -100,6 +100,11 @@
 |                          | ~C-c C-y~ / ~C-c C-w~   | yank rectangle / to register       |
 |                          | ~C-c C-x~               | yank rectangle from register       |
 |                          | ~C-u~ before yank       | insert (shift text) vs. overwrite  |
+|--------------------------+-------------------------+-------------------------------------|
+| shift whole art          | select region, ~C-x TAB~| start interactive rigid indent     |
+|                          | ~<right>~ / ~<left>~    | nudge every line in region 1 col   |
+|                          | ~S-<right>~ / ~S-<left>~| nudge by a tab stop                |
+|                          | ~C-u~ N ~C-x TAB~       | shift region N cols right directly |
 
 #+latex: \end{multicols}
 #+END_CENTER
