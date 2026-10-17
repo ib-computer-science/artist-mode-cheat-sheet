@@ -74,7 +74,8 @@
 |--------------------------+-------------------------+-------------------------------------|
 | line / char editing      | ~DEL~ / ~C-d~           | clear char left / right (space)    |
 |                          | ~C-c C-d~               | delete char (shifts text)          |
-|                          | ~C-k~                   | clear line                         |
+|                          | ~C-k~                   | clear line (newline stays)         |
+|                          | ~C-S-backspace~         | remove whole line (shifts up)      |
 |                          | ~C-o~                   | open line                          |
 |                          | ~C-j~                   | duplicate line                     |
 |--------------------------+-------------------------+-------------------------------------|
